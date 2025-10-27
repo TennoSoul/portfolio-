@@ -1,6 +1,6 @@
 module portfolio-backend
 
-go 1.23.0 // or whatever version you're using
+go 1.25.3
 
 require (
 	github.com/gin-contrib/cors v1.7.6
