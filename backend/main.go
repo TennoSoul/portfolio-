@@ -11,7 +11,8 @@ func main() {
 
 	// Add CORS middleware
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
+		// Allow common local dev origins so frontend running on other ports won't be blocked.
+		AllowOrigins:     []string{"http://localhost:3000", "http://localhost:5173", "http://localhost:3001"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Type"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -58,4 +59,36 @@ func getProjects(c *gin.Context) {
 		"projects": projects,
 		"status":   "success",
 	})
+}
+
+// New: return games list matching API.md
+func getGames(c *gin.Context) {
+	games := []gin.H{
+		{"id": "1", "name": "Memory Match", "description": "Match pairs"},
+		{"id": "2", "name": "Tic-Tac-Toe", "description": "Classic game"},
+	}
+	c.JSON(200, gin.H{"games": games, "status": "success"})
+}
+
+// New: accept a score post (simple echo)
+func submitScore(c *gin.Context) {
+	gameId := c.Param("id")
+	var body map[string]interface{}
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(400, gin.H{"error": "invalid body"})
+		return
+	}
+	// Echo back with gameId and received body (replace with DB save later)
+	c.JSON(200, gin.H{"gameId": gameId, "received": body})
+}
+
+// New: simple skills endpoint
+func getSkills(c *gin.Context) {
+	skills := []string{"Go", "React", "SQL", "Java"}
+	c.JSON(200, gin.H{"skills": skills, "status": "success"})
+}
+
+// New: websocket stub (return 501 for now)
+func handleWebSocket(c *gin.Context) {
+	c.JSON(501, gin.H{"error": "websocket not implemented yet"})
 }
