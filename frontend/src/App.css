@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+}
+
+main {
+  padding: 2rem 5%;
+}
+
+.loading {
+  color: #58a6ff;
+  text-align: center;
+}
+
+.error {
+  color: #ff6b6b;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid #30363d;
+  margin-top: 3rem;
+}

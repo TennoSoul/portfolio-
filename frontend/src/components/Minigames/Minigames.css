@@ -1,0 +1,21 @@
+.minigames-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.minigames-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.minigame-card {
+  background: #161b22;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.minigame-card:hover {
+  transform: scale(1.03);
+}
