@@ -1,0 +1,16 @@
+# ignore build artifacts and local files
+server
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+.env
+.DS_Store
+
+# Go module cache
+Godeps/
+
+# IDE files
+.vscode/
+.idea/

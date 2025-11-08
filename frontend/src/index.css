@@ -1,0 +1,111 @@
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Global Styles === */
+body {
+  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #1a1a1a;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Layout Container === */
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* === Headings === */
+h1, h2, h3 {
+  color: #222;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: 1.6rem;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  margin-top: 2rem;
+}
+
+/* === Lists === */
+ul {
+  list-style: none;
+  width: 100%;
+  max-width: 700px;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === Links & Buttons === */
+a, button {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover, button:hover {
+  color: #0056b3;
+}
+
+/* === Subtle Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+li {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* === Scrollbar (modern webkit browsers) === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}

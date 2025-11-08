@@ -1,33 +1,45 @@
-// frontend/src/App.js
-import React, { useState, useEffect } from 'react';
-import Projects from './components/Projects';
-import Minigames from './components/Minigames';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import MemoryGame from "./components/MemoryGame";
 
-function App() {
-  const [projects, setProjects] = useState([]);
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    fetchProjects();
-    fetchGames();
-  }, []);
-
-  const fetchProjects = async () => {
-    const res = await fetch('http://localhost:8080/api/projects');
-    const data = await res.json();
-    setProjects(data.projects);
-  };
-
+function Home() {
   return (
-    <div className="App">
-      <header>
-        <h1>Your Name - Full Stack Developer</h1>
-        <p>Go | React | Java</p>
-      </header>
-      
-      <Projects projects={projects} />
-      <Minigames games={games} />
+    <div>
+      <h2>Welcome to Portfolio Games</h2>
+      <p>Select a game from the navigation above.</p>
     </div>
   );
 }
+  
+function TicTacToe() {
+  return (
+    <div>
+      <h2>Tic Tac Toe</h2>
+      <p>Coming soon!</p>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <header style={{ padding: "1rem", background: "#eee" }}>
+        <h1>Portfolio Games</h1>
+        <nav>
+          <Link to="/" style={{ marginRight: "1rem" }}>Home</Link>
+          <Link to="/memory">Memory Game</Link>
+          <Link to="/tictactoe" style={{ marginLeft: "1rem" }}>Tic Tac Toe</Link>
+        </nav>
+      </header>
+      <div style={{ padding: "2rem" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/memory" element={<MemoryGame />} />
+          <Route path="/tictactoe" element={<TicTacToe />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
