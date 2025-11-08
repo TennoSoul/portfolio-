@@ -1,7 +1,6 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from 'react';
-import Projects from './components/Projects';
-import Minigames from './components/Minigames';
+import MemoryGame from './components/MemoryGame';
 import './App.css';
 
 function App() {
@@ -19,6 +18,17 @@ function App() {
     setProjects(data.projects);
   };
 
+  const fetchGames = async () => {
+    try {
+      const res = await fetch('http://localhost:8080/api/games');
+      const data = await res.json();
+      setGames(data.games || []);
+    } catch (err) {
+      console.error('fetchGames error', err);
+      setGames([]);
+    }
+  };
+
   return (
     <div className="App">
       <header>
@@ -26,8 +36,17 @@ function App() {
         <p>Go | React | Java</p>
       </header>
       
-      <Projects projects={projects} />
-      <Minigames games={games} />
+      <section>
+        <h2>Projects</h2>
+        <ul>{projects.map(p => <li key={p.id}>{p.title}</li>)}</ul>
+      </section>
+      <section>
+        <h2>Games</h2>
+        <ul>{games.map(g => <li key={g.id}>{g.name}</li>)}</ul>
+      </section>
+      <MemoryGame />
     </div>
   );
 }
+
+export default App;

@@ -7,7 +7,16 @@ import (
 )
 
 func main() {
+	// Trust only local loopback for dev; do NOT set trusted proxies globally in production.
+	// We'll set trusted proxies on the engine instance after creating it.
+
 	r := gin.Default()
+
+	// Trust only local loopback for dev; do NOT use gin.SetTrustedProxies([]string{"*"}) in production.
+	if err := r.SetTrustedProxies([]string{"127.0.0.1", "::1"}); err != nil {
+		// For development, fail fast so the issue is visible; adjust handling for production.
+		panic(err)
+	}
 
 	// Add CORS middleware
 	r.Use(cors.New(cors.Config{
